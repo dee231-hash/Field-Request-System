@@ -1,0 +1,34 @@
+{% extends 'BASE.html' %}
+
+{% block title %}Field Requests{% endblock %}
+
+{% block content %}
+<section id="field-requests">
+  <h2 class="h4">Field Requests</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th>Deadline</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>Pending</td>
+        <td>2024-08-15</td>
+        <td>
+          <button class="btn btn-info btn-sm">View</button>
+          <button class="btn btn-success btn-sm">Approve</button>
+          <button class="btn btn-danger btn-sm">Reject</button>
+        </td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</section>
+{% endblock %}

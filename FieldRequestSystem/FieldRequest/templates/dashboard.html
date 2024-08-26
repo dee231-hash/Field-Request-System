@@ -1,0 +1,23 @@
+{% extends 'BASE.html' %}
+
+{% block title %}
+    Student Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="profile-container">
+        {% if student_details and student_details.profilePic %}
+            <img src="{{ student_details.profilePic.url }}" alt="Profile Picture">
+        {% else %}
+            <img src="./../../static/img/images.jpeg" alt="Default Profile Picture">
+        {% endif %}
+
+        <h2>{{ user.username }}</h2>
+
+        <p><strong>University:</strong> {{ student_details.university|default:"Unknown" }}</p>
+        <p><strong>Age:</strong> {{ student_details.age|default:"Unknown" }}</p>
+        <p><strong>Year of Study:</strong> {{ student_details.year|default:"Unknown" }}</p>
+        <p><strong>Email:</strong> {{ user.email|default:"Unknown" }}</p>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,40 @@
+{% extends 'BASE.html'%}
+
+{% block title %}Student Request Details{% endblock %}
+
+{% block content%}
+<div class="container mt-5">
+    <h2>Student Field Request Details</h2>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'request_field_training' %}">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="department">Department:</label>
+        <input type="text" class="form-control" id="department" name="department" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="applicationLetter">Application Letter (PDF):</label>
+        <input type="file" class="form-control-file" id="applicationLetter" name="applicationLetter" accept=".pdf" required>
+    </div>
+
+    <div class="form-row mb-3">
+        <div class="col">
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" name="start-date" class="form-control" required>
+        </div>
+        <div class="col">
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" name="end-date" class="form-control" required>
+        </div>
+      </div>
+    
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+</div>
+{% endblock %}

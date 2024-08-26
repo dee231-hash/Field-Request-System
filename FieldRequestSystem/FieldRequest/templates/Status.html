@@ -1,0 +1,41 @@
+{% extends 'BASE.html' %}
+
+{% block title %}Student Request Status{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="h4">Field Requests</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Department</th>
+          <th>Status</th>
+          <th>Deadline</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for request in RequestDetails %}
+        <tr>
+          <td>{{ request.id }}</td>
+          <td>{{ request.department }}</td>
+          <td>
+            {% if not request.coordinator_response %}
+              Pending
+            {% elif request.coordinator_response == 'Approved' %}
+              Approved
+            {% elif request.coordinator_response == 'Rejected' %}
+              Rejected
+            {% endif %}
+          </td>
+          <td>{{ request.endDate }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">No requests found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

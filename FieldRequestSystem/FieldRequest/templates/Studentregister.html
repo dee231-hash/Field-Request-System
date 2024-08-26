@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: grey;
+
+        }
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-aqua {
+            background-color: rgb(112, 122, 122);
+            border: none;
+            color: white;
+        }
+        .links{
+            justify-content:start;
+            align-items: normal;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="links">
+        <a href="#">Home</a>
+    </div>
+<div class="body">
+    <div class="login-container">
+        <h2 class="text-center">Register</h2>
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">FullName</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Your Fullname">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="password2"> Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-aqua btn-block">SUBMIT</button>
+        </form>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
