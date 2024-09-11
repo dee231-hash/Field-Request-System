@@ -1,10 +1,22 @@
-{% extends 'BASE.html' %}
+{% extends 'SBASE.html' %}
 
 {% block title %}Student Information{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
   <h2>Add Student Details</h2>
+  {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
   <form method="POST" enctype="multipart/form-data" action="{% url 'add_student_details' %}">
       {% csrf_token %}
       <div class="form-group">

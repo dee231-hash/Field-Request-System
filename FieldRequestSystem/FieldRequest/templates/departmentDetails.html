@@ -1,0 +1,29 @@
+{% extends 'SBASE.html' %}
+
+{% block title %}Departments{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Departments Information</h2>
+    
+    <div class="row mb-3 justify content center">
+        {% for department in departments %}
+            <div class="col-md-8">
+                <div class="card custom-card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h5 class="card-title">{{ department.name }} Department</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Head of Department:</strong> {{ department.head_of_department }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ department.location }}</p>
+                        <p class="card-text"><strong>Description:</strong> {{ department.description }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'request_field_training' %}" class="btn btn-outline-primary">Field Request</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

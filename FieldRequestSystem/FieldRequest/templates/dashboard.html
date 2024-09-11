@@ -1,22 +1,37 @@
-{% extends 'BASE.html' %}
+{% extends 'SBASE.html' %}
 
 {% block title %}
     Student Dashboard
 {% endblock %}
 
+
 {% block content %}
-    <div class="profile-container">
-        {% if student_details and student_details.profilePic %}
-            <img src="{{ student_details.profilePic.url }}" alt="Profile Picture">
+    <div class="profile-container ">
+        {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+        <div class="profile-section">
+        {% if studentDetails and studentDetails.profilePic %}
+
+            <img src="{{ studentDetails.profilePic.url }}" alt="Profile Picture" class="profile-pic">
         {% else %}
-            <img src="./../../static/img/images.jpeg" alt="Default Profile Picture">
+            <img src="./../../static/img/images.jpeg" alt="Default Profile Picture" class="profile-pic">
         {% endif %}
-
-        <h2>{{ user.username }}</h2>
-
-        <p><strong>University:</strong> {{ student_details.university|default:"Unknown" }}</p>
-        <p><strong>Age:</strong> {{ student_details.age|default:"Unknown" }}</p>
-        <p><strong>Year of Study:</strong> {{ student_details.year|default:"Unknown" }}</p>
+        <h2>Welcome @{{ user.username }}</h2>
+    </div>
+        <p><strong>Full Name: </strong>{{ user.username }}</p>
+        <p><strong>University:</strong> {{ studentDetails.university|default:"Unknown" }}</p>
+        <p><strong>Age:</strong> {{ studentDetails.age|default:"Unknown" }}</p>
+        <p><strong>Year of Study:</strong> {{ studentDetails.year|default:"Unknown" }}</p>
         <p><strong>Email:</strong> {{ user.email|default:"Unknown" }}</p>
     </div>
 {% endblock %}

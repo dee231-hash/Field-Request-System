@@ -1,0 +1,211 @@
+/* Custom styles */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  height: 100vh; /* Make sidebar cover the full height of the viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+#student-details {
+    margin-top: 30px;
+}
+.custom-card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+.custom-card .card-body {
+    padding: 2rem;
+}
+
+
+#student-details img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-header {
+    background-color: #007bff; /* Blue color */
+    color: white;
+}
+
+.card-footer {
+    background-color: #f8f9fa; /* Light grey */
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 0;
+  margin-top: 15px;
+  font-size:larger;
+}
+
+.sidebar a:hover, .sidebar .dropdown-toggle:hover {
+  background-color: #495057;
+  color: white;
+}
+.dropdown-menu {
+  position: relative; /* Position relative to the parent container */
+  z-index: 1000; /* Ensures the dropdown is above other elements */
+  background-color: #545b63; /* Matches the sidebar styling */
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  width: 100%; /* Full width dropdown to avoid overflow */
+  padding: 0; /* Consistent padding */
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-content {
+    display: none;
+    padding-left: 20px; /* Indent dropdown items */
+}
+
+/* Expand dropdown menu on hover or click */
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+/* Transition for smooth dropdown */
+.dropdown-content {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+.dropdown-item {
+    padding: 10px 0;
+    color: #343a40;
+    background-color: #3d41468c;
+}
+.dropdown-menu a {
+  color: #dadfe4;
+}
+.dropdown-toggle {
+    cursor: pointer;
+}
+.dropdown-toggle::after {
+    content: "▼";
+    font-size: 12px;
+    margin-left: 10px;
+}
+.dropdown.active .dropdown-toggle::after {
+    content: "▲"; /* Toggle arrow up when active */
+}
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  width: calc(100% - 250px);
+  margin-left: 250px; /* Push content to the right of the sidebar */
+}
+.profile-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+.menu-btn {
+  display: none;
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+.menu-btn:focus {
+  outline: none;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: absolute;
+    height: 100%;
+    margin-left: 0;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .content {
+    width: 100%;
+    margin-left: 0;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .dropdown-menu {
+    position: static;
+    width: auto;
+  }
+}
+.margin{
+  margin-left: 50%;
+}
+.colorG{
+  color: green;
+}
+.colorR{
+  color: red;
+}
+.colorB{
+  color:blue;
+}
+.custom-error-message {
+  color: #f8d7da;  /* Light red */
+  background-color: #f5c6cb;  /* Background */
+  border-color: #f5c2c7;  /* Border */
+}
+
+.custom-card {
+  transition: transform 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+

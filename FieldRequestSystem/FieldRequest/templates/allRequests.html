@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Students Requests {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="h4">Available Field Requests</h2>
+    {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Department</th>
+          <th>University</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for Srequest in Srequests %}
+        <tr>
+          <td>{{ Srequest.id }}</td>
+          <td>{{ Srequest.department }}</td>
+          <td>{{ Srequest.s_details.university }}</td>
+          <td>{{ Srequest.startDate}} to {{ Srequest.endDate }}</td>
+          <td><a href="{% url 'decision' Srequest.id %}"><button class="btn btn-primary">MoreDetails</button></a></td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">No requests found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

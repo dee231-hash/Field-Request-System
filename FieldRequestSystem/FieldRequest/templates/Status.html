@@ -1,34 +1,46 @@
-{% extends 'BASE.html' %}
+{% extends 'SBASE.html' %}
 
 {% block title %}Student Request Status{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <h2 class="h4">Field Requests</h2>
+    {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Request ID</th>
+          <th>RequestID</th>
           <th>Department</th>
           <th>Status</th>
-          <th>Deadline</th>
+          <th>StartDate</th>
         </tr>
       </thead>
       <tbody>
-        {% for request in RequestDetails %}
+        {% for Srequest in Srequests %}
         <tr>
-          <td>{{ request.id }}</td>
-          <td>{{ request.department }}</td>
+          <td>{{ Srequest.id }}</td>
+          <td>{{ Srequest.department }}</td>
           <td>
-            {% if not request.coordinator_response %}
-              Pending
-            {% elif request.coordinator_response == 'Approved' %}
-              Approved
-            {% elif request.coordinator_response == 'Rejected' %}
-              Rejected
+            {% if not Srequest.coordinator_response %}
+            <h6 class="colorB">Pending</h6>
+            {% elif Srequest.coordinator_response == 'Approved' %}
+              <h6 class="colorG">Approved</h6>
+            {% elif Srequest.coordinator_response == 'Rejected' %}
+            <h6 class="colorR">Rejected</h6>
             {% endif %}
           </td>
-          <td>{{ request.endDate }}</td>
+          <td>{{ Srequest.startDate }}</td>
         </tr>
         {% empty %}
         <tr>

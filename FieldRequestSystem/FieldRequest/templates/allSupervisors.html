@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} All Supervisors {% endblock%}
+
+{% block content%}
+<section id="field-requests">
+    <h2 class="h4">ALl Supervisors</h2>
+    {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Supervisor ID</th>
+          <th>UserName</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for instructor in instructors %}
+        <tr>
+          <td>{{ instructor.id }}</td>
+          <td>{{ instructor.user.username }}</td>
+          <td>{{ instructor.user.email }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">No List found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{%endblock%}

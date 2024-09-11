@@ -1,17 +1,38 @@
-{% extends 'BASE.html'%}
+{% extends 'SBASE.html'%}
 
 {% block title %}Student Request Details{% endblock %}
 
 {% block content%}
 <div class="container mt-5">
     <h2>Student Field Request Details</h2>
+    {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.level == messages.ERROR %}custom-error-message{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}  
     <form method="POST" enctype="multipart/form-data" action="{% url 'request_field_training' %}">
     {% csrf_token %}
     
     <div class="form-group">
         <label for="department">Department:</label>
-        <input type="text" class="form-control" id="department" name="department" required>
+          <select class="form-control" name="department" id="department" required>
+          {% for dep in Deps%}
+            <option value="{{dep.name}}">{{dep.name}}</option>
+            {% endfor %}  
+          </select> 
     </div>
+    <div class="form-group">
+      <label for="region">Region:</label>
+      <input type="text" class="form-control" id="region" name="region" required>
+    </div>
+    
     
     <div class="form-group">
         <label for="applicationLetter">Application Letter (PDF):</label>
@@ -31,10 +52,10 @@
     
     <div class="form-group">
         <label for="description">Description:</label>
-        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+        <textarea class="form-control" id="description" name="description" rows="4" ></textarea>
     </div>
-    
-    <button type="submit" class="btn btn-primary">Submit Request</button>
+    <a href="{% url 'D_information' %}" class="btn btn-primary">View Departments</a>
+    <button type="submit" class="btn btn-success"> Submit Request</button>
 </form>
 </div>
 {% endblock %}
